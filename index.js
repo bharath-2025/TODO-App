@@ -6,6 +6,10 @@ const app = express();
 app.use('/',require('./routes/index'));
 
 
+// setting up the view engine
+app.set('view engine','ejs');   // telling to our express server to use/setup EJS as the default template engine.
+app.set('views','./views');     // setting up the path for views.
+
 
 
 

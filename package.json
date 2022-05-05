@@ -1,0 +1,23 @@
+{
+  "name": "backend-todo-app",
+  "version": "1.0.0",
+  "description": "A simple TODO App using Node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharath-2025/TODO-App.git"
+  },
+  "author": "Mokara Bharath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bharath-2025/TODO-App/issues"
+  },
+  "homepage": "https://github.com/bharath-2025/TODO-App#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

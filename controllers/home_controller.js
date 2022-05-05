@@ -1,36 +1,22 @@
-var todo_list =[
-    {
-        desc:'buying vegetables',
-        category:'personal',
-        due:'2/5/22'
-    },
-    {
-        desc:'Complete Mini project',
-        category:'school',
-        due:'10/5/22'
-    },
-    {
-        desc:'perepare for placement',
-        category:'Work',
-        due:'28/5/22'
-    }
-]
-
+// Requiring the collection of database ie Todo from models folder
 const Todo = require('../models/todo');
 
 module.exports.home = function(req,res){
-   return res.render('home',{
-       title:'TODO APP',
-       todoList: todo_list
-   })
+
+    Todo.find({},function(err,todoItems){
+        if(err){
+            console.log("Error in fetching data from DB");
+            return;
+        }
+        return res.render('home',{
+            title:'TODO APP',
+            todoList: todoItems
+        })
+    })
 }
 
 module.exports.createTodo = function(req,res){
-    // Creating Without db using an array
-    // //console.log(req.body);
-    // todo_list.push(req.body);
-    // return res.redirect('back');
-
+    //creating the record into DB
     Todo.create({
         desc : req.body.desc,
         category : req.body.category,

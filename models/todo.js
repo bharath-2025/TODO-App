@@ -17,6 +17,7 @@ const todoSchema = new mongoose.Schema({
     }
 });
 
+// naming the collection as Todo and telling it to use the schema as todoSchema
 const Todo = mongoose.model('Todo',todoSchema);
 
 module.exports = Todo;

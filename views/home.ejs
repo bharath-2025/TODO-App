@@ -9,6 +9,32 @@
     </title>
 </head>
 <body>
-    <%= body %>
+    <h1>TODO APP</h1>
+    <form action="/create-todo" method="post">
+        Description: <textarea name="desc"></textarea><br><br>
+        Category: <select value="Select a category" name="category">
+            <option>Select a category</option>
+            <option>Personal</option>
+            <option>Work</option>
+            <option>School</option>
+            <option>Cleaning</option>
+            <option>Other</option>
+        </select><br><br>
+        Date: <input type="date" name="due"><br><br>
+        <input type="submit" value="ADD Task">
+        <input type="button" value="DELETE TAsk">
+
+        <ul>
+            <% for (let i of todoList) { %>
+                <li>
+                    <p><%=i.desc%></p>
+                    <p><%=i.category%></p>
+                    <p><%=i.due%></p>
+                </li>
+            <% } %>
+        </ul>
+    </form>
+    
+
 </body>
 </html>

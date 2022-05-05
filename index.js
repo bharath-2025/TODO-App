@@ -1,6 +1,10 @@
 const { urlencoded } = require('body-parser');
 const express = require('express');
 const port = 5000;
+
+// Setting up the mongoose Connection before firing up the server
+const db = require('./config/mongoose');
+
 const app = express();
 
 // Setting up the body-parser to read or decode the form data

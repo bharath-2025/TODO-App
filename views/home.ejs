@@ -4,37 +4,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3ba32f82cb.js" crossorigin="anonymous"></script>
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>TODO APP</h1>
-    <form action="/create-todo" method="post">
-        Description: <textarea name="desc"></textarea><br><br>
-        Category: <select value="Select a category" name="category">
-            <option>Select a category</option>
-            <option>Personal</option>
-            <option>Work</option>
-            <option>School</option>
-            <option>Cleaning</option>
-            <option>Other</option>
-        </select><br><br>
-        Date: <input type="date" name="due"><br><br>
-        <input type="submit" value="ADD Task">
-        <input type="button" value="DELETE TAsk">
-
-        <ul>
-            <% for (let i of todoList) { %>
-                <li>
-                    <p><%=i.desc%></p>
-                    <p><%=i.category%></p>
-                    <p><%=i.due%></p>
-                </li>
-            <% } %>
-        </ul>
-    </form>
+    <div id="header">
+        <h1><i class="fa-solid fa-clipboard-check"></i> TODO APP</h1>
+    </div>
     
+    <div id="container">
+        <div id="details">
+            <form action="/create-todo" method="post">
+                <section id="sec1">
+                    <label for="desc">DESCRIPTION</label>
+                    <textarea name="desc" placeholder="What you what to do?" id="desc"></textarea>
+                </section>
+                <hr>
+                <section id="sec2">
+                    <div id="category">
+                        <label>CATEGORY</label>
+                        <select value="SELECT A CATEGORY" name="category">
+                        <option>Choose a Category</option>
+                        <option>Personal</option>
+                        <option>Work</option>
+                        <option>School</option>
+                        <option>Cleaning</option>
+                        <option>Other</option>
+                        </select>
+                    </div>
+                    <div id="date" >
+                        <label for="due">DUE DATE</label>
+                        <input type="date" name="due" id="due">
+                    </div>
+                    
+                </section>
+                <hr>
+                <br>
+                <div id="add"><button type="submit" style="background-color:red;color:white;"><i class="fa-solid fa-plus"></i> ADD Task</button></div>
 
+            </form>
+        </div>
+        <div id="list">
+            <form action="/delete-todo" method="get">
+                <div id="tasks">
+                    <ul>
+                    <!-- Iterating through the todoList array which we assigned through the todoItems array from the database using find function -->
+                    <% for (let i of todoList) { %>
+                        <li id="cards">
+                            <div id="detail">
+                                <input type="checkbox" name="<%=i._id%>">
+                                <div id="content">
+                                    <p><%=i.desc%></p>
+                                    <p><i class="fa-solid fa-calendar-days"></i> &nbsp &nbsp<%=i.due%></p>
+                                </div>
+                                
+                            </div>
+                            <!-- To Style different categories with different colors -->
+                            <% if(i.category == 'School'){ %>
+                                <div id="categ" style="background-color:lightgreen">
+                            <% } else if(i.category == 'Work') {%>
+                                <div id="categ" style="background-color: #9f0060">
+                            <% } else if(i.category == 'Personal') {%>
+                                <div id="categ" style="background-color: #0d1acf"> 
+                            <% } else if(i.category == 'Cleaning') {%>
+                                <div id="categ" style="background-color: #dc5613">
+                            <% } else {%>
+                                <div id="categ" style="background-color: #d6d312">        
+                            <% } %>
+                                    <p><%=i.category%></p>
+                                </div>
+                        </li>
+                        <hr>
+                        <br>
+                    <% } %>
+                </ul>
+                </div>
+                <div id="delete">
+                    <button type="submit" style="background-color:black;color:white;"><i class="fa-solid fa-trash"></i> Delete TODO</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+    
+    <div id="identity"><p><i class="fa-solid fa-id-card"></i> &nbsp MOKARA BHARATH</p></div>
+       
+
+    <script src="/js/index.js"></script>
 </body>
 </html>
